@@ -11,3 +11,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.listtabel{
+margin-left: 200px;
+width: 400px;
+
+}
+
+thead{
+
+  background-color: lightgrey;
+}
+
+tbody{
+background-color: lightpink;
+
+}
