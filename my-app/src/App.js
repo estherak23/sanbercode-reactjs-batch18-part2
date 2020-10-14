@@ -5,12 +5,13 @@ import List from './tugas10/tugas10'
 import Form from './tugas9/tugas9'
 import Clock from './tugas11/clock'
 import Time from './tugas11/time'
-import DaftarBuah from './tugas12/tugas12'
+
+import DaftarBuah from './tugas13/tugas13'
 
 function App() {
  return(
 <>
-
+{/*}
       <Form/>
       <List />
 
@@ -18,6 +19,9 @@ function App() {
       <Time/>
 
 
+      <DaftarBuah/>
+{*/}
+ 
       <DaftarBuah/>
 
     
