@@ -1,50 +1,15 @@
-import React, {useState,useEffect} from "react"
-import axios from 'axios';
+import React, {useContext} from "react"
+import {BuahContext} from "./BuahContext"
+import axios from "axios"
 
 
 
-
-const DaftarBuah =() =>{
-    const [daftarBuah, setDaftarBuah] = useState(null)
-
-    //inputan yg akan dimasukin 
-    const [input, setInput] = useState({name: "",price:"",weight:"" ,id: null})
-  
-
-    useEffect(() => {
-        if (daftarBuah === null){
-          axios.get(`http://backendexample.sanbercloud.com/api/fruits`)
-          .then(res => {
-            setDaftarBuah(res.data.map(el=>{return{id:el.id,name:el.name,price:el.price,weight:el.weight}}))
-          })
-        }
-      }, [daftarBuah]);
+const BuahForm = () =>{
+    const [daftarBuah, setDaftarBuah, input, setInput] = useContext(BuahContext)
 
 
-
-
-      const handleDelete = (event) =>{
-        var idDataBuah= parseInt(event.target.value) 
-        var newDaftarBuah = daftarBuah.filter(x=> x.id !== idDataBuah)
-        axios.delete(`http://backendexample.sanbercloud.com/api/fruits/${idDataBuah}`)
-        .then(res => {
-          
-          console.log(res)
-        })
-        setDaftarBuah([...newDaftarBuah])
-      }
-
-
-
-
-      const handleEdit = (event) =>{
-        var idDataBuah= parseInt(event.target.value)
-        var dataBuah = daftarBuah.find(x=> x.id === idDataBuah)
-        setInput({id: idDataBuah, name:dataBuah.name,price:dataBuah.price,weight:dataBuah.weight })
-    
-      }
-      
-      const handlechange = (event) =>{
+ 
+    const handlechange = (event) =>{
         let typeOfInput = event.target.name
         
         switch (typeOfInput){
@@ -101,48 +66,15 @@ const DaftarBuah =() =>{
               })
                 }
                 
-              
-              
               setInput({id: null, name: "",price:"",weight:0})
             
         }
       
       
-        return(
-            <>
-              <h1>Daftar Harga Buah</h1>
-              <table>
-                <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>Nama</th>
-                    <th>Harga</th>
-                    <th>Berat</th>
-                    <th>Aksi</th>
-                  </tr>
-                </thead>
-                <tbody>
-                    {
-                      daftarBuah !== null && daftarBuah.map((item,index)=>{
-                        return(                    
-                          <tr key={index}>
-                            <td>{index+1}</td>
-                            <td>{item.name}</td>
-                            <td>{item.price}</td>
-                            <td>{item.weight/1000} kg</td>
-                            <td>
-                              <button onClick={handleEdit} value={item.id}>Edit</button>
-                              &nbsp;
-                              <button onClick={handleDelete} value={item.id}>Delete</button>
-                            </td>
-                          </tr>
-                        )
-                      })
-                    }
-                </tbody>
-              </table>
-              {/* Form */}
-              <h1>Form Daftar Harga Buah</h1>
+    return(
+<>
+ {/* Form */}
+ <h1>Form Daftar Harga Buah</h1>
               <div style={{width: "50%", margin: "0 auto", display: "block"}}>
                 <div style={{border: "1px solid #aaa", padding: "20px"}}>
                   <form onSubmit={handleSubmit}>
@@ -171,8 +103,9 @@ const DaftarBuah =() =>{
                 </div>
               </div>
             </>
-          )
-        }
-      
 
-export default DaftarBuah
+
+    )
+}
+
+export default BuahForm

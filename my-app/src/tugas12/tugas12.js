@@ -58,6 +58,7 @@ class DaftarBuah extends Component{
 
   handleChange(event){
     let typeOfInput = event.target.name
+
     switch (typeOfInput){
       case "name":
       {
@@ -149,19 +150,19 @@ class DaftarBuah extends Component{
               <label style={{float: "left"}}>
                 Nama:
               </label>
-              <input style={{float: "right"}} type="text" required name="name" value={this.state.inputName} onChange={this.handleChange}/>
+              <input style={{float: "right"}} type="text" required name="name" value={input.name} onChange={handleChange}/>
               <br/>
               <br/>
               <label style={{float: "left"}}>
                 Harga:
               </label>
-              <input style={{float: "right"}} type="text" required name="harga" value={this.state.inputHarga} onChange={this.handleChange}/>
+              <input style={{float: "right"}} type="text" required name="harga" value={input.price} onChange={handleChange}/>
               <br/>
               <br/>
               <label style={{float: "left"}}>
                 Berat (dalam gram):
               </label>
-              <input style={{float: "right"}} type="number" required name="berat" value={this.state.inputBerat} onChange={this.handleChange}/>
+              <input style={{float: "right"}} type="number" required name="berat" value={input.weight} onChange={handleChange}/>
               <br/>
               <br/>
               <div style={{width: "100%", paddingBottom: "20px"}}>
